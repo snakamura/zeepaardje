@@ -15,6 +15,7 @@ Cabal-version:       >=1.2
 Executable zeepaardje
   Main-is:             Main.hs
   Build-depends:       base >= 4,
+                       bytestring,
                        attoparsec >= 0.10,
                        conduit,
                        attoparsec-conduit
