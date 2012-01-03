@@ -1,0 +1,18 @@
+Name:                zeepaardje
+Version:             0.1
+Synopsis:            
+Description:         
+License:             BSD3
+License-file:        LICENSE
+Author:              snak
+Maintainer:          snak@snak.org
+Copyright:           2012 snak
+Category:            Web
+Build-type:          Simple
+-- Extra-source-files:  
+Cabal-version:       >=1.2
+
+Executable zeepaardje
+  Main-is:             Main.hs
+  Build-depends:       base
+  -- Other-modules:       
