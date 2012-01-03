@@ -14,5 +14,12 @@ Cabal-version:       >=1.2
 
 Executable zeepaardje
   Main-is:             Main.hs
-  Build-depends:       base
-  -- Other-modules:       
+  Build-depends:       base >= 4,
+                       attoparsec >= 0.10,
+                       conduit,
+                       attoparsec-conduit
+  Other-modules:       Codec.Grib,
+                       Codec.Grib.Parser,
+                       Codec.Grib.Types
+  Extensions:          OverloadedStrings
+  GHC-Options:         -Wall
