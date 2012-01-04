@@ -18,7 +18,8 @@ Executable zeepaardje
                        bytestring,
                        attoparsec >= 0.10,
                        conduit,
-                       attoparsec-conduit
+                       attoparsec-conduit,
+                       data-binary-ieee754
   Other-modules:       Codec.Grib,
                        Codec.Grib.Parser,
                        Codec.Grib.Types
