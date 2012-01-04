@@ -22,6 +22,8 @@ Executable zeepaardje
                        data-binary-ieee754
   Other-modules:       Codec.Grib,
                        Codec.Grib.Parser,
-                       Codec.Grib.Types
+                       Codec.Grib.Types,
+                       Data.MSM,
+                       Data.MSM.Types
   Extensions:          OverloadedStrings
   GHC-Options:         -Wall
