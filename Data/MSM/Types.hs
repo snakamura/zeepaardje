@@ -1,7 +1,35 @@
 module Data.MSM.Types (
+    MSM(..),
+    Metadata(..),
+    Point(..),
     Surface(..),
-    Air(..)
+    Air(..),
+    Pressure(..)
 ) where
+
+import Data.IntMap (IntMap)
+import Data.Map (Map)
+
+
+data MSM = MSMSurface Metadata (IntMap (Map Point Surface))
+         | MSMAir Metadata (Map Pressure (IntMap (Map Point Air)))
+  deriving Show
+
+
+data Metadata = Metadata {
+    year   :: Int,
+    month  :: Int,
+    day    :: Int,
+    hour   :: Int,
+    minute :: Int,
+    second :: Int
+} deriving Show
+
+
+data Point = Point {
+    latitude  :: Int,
+    longitude :: Int
+} deriving Show
 
 
 data Surface = Surface {
@@ -29,6 +57,7 @@ data Air = Air {
 } deriving Show
 
 
+
 data Pressure = P1000
               | P975
               | P950
@@ -45,4 +74,4 @@ data Pressure = P1000
               | P200
               | P150
               | P100
- deriving Show
+  deriving Show

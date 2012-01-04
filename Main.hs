@@ -8,6 +8,7 @@ import Data.Binary.IEEE754 (wordToFloat)
 import Data.Conduit (($$))
 import Data.Conduit.Binary (sourceFile)
 import Data.Conduit.Attoparsec (sinkParser)
+import qualified Data.MSM as MSM
 import System.Environment (getArgs)
 
 
@@ -24,3 +25,4 @@ main = do
   print $ wordToFloat $ Grib.r s5
   print $ Grib.d s5
   print $ Grib.e s5
+  print $ MSM.parse grib
