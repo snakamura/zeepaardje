@@ -57,6 +57,10 @@ data Section3 = Section3 {
 
 
 data Section4 = Section4 {
+    parameterType   :: Word8,
+    parameterNumber :: Word8,
+    layer1Type      :: Word8,
+    layer1Number    :: Word32
 } deriving Show
 
 

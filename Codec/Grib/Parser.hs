@@ -105,7 +105,14 @@ section3 = word32 72 *>
 
 section4 :: Parser Section4
 section4 = anyWord32 >>= \len ->
-           const Section4 <$> take (fromIntegral len - 4)
+           word8 4 *>
+           word16 0 *>
+           anyWord16 *>
+           (Section4 <$> anyWord8
+                     <*> anyWord8 <* anyWord8 <* word8 0x1f <* word8 0xff <* anyWord16 <* anyWord8 <* anyWord8 <* anyWord32
+                     <*> anyWord8 <* anyWord8
+                     <*> anyWord32) <*
+           take (fromIntegral len - 28)
 
 
 section5 :: Parser Section5
