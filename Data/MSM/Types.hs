@@ -1,9 +1,10 @@
 module Data.MSM.Types (
-    MSM(..),
-    Metadata(..),
-    Point(..),
     Surface(..),
     Air(..),
+    Metadata(..),
+    Point(..),
+    SurfaceParameters(..),
+    AirParameters(..),
     Pressure(..)
 ) where
 
@@ -11,8 +12,10 @@ import Data.IntMap (IntMap)
 import Data.Map (Map)
 
 
-data MSM = MSMSurface Metadata (IntMap (Map Point Surface))
-         | MSMAir Metadata (Map Pressure (IntMap (Map Point Air)))
+data Surface = Surface Metadata (IntMap (Map Point SurfaceParameters))
+  deriving Show
+
+data Air = Air Metadata (Map Pressure (IntMap (Map Point AirParameters)))
   deriving Show
 
 
@@ -29,10 +32,10 @@ data Metadata = Metadata {
 data Point = Point {
     latitude  :: Int,
     longitude :: Int
-} deriving Show
+} deriving (Show, Eq, Ord)
 
 
-data Surface = Surface {
+data SurfaceParameters = SurfaceParameters {
     surfaceSeaLevelPressure  :: Float,
     surfacePressure          :: Float,
     surfaceWesterlyWind      :: Float,
@@ -47,7 +50,7 @@ data Surface = Surface {
 } deriving Show
 
 
-data Air = Air {
+data AirParameters = AirParameters {
     airHeight           :: Float,
     airWesterlyWind     :: Float,
     airSoutherlyWind    :: Float,
