@@ -1,8 +1,14 @@
 module Data.MSM.Parser (
-    parseSurface
+    parseSurface,
+    topoParser,
+    landSeaParser
 ) where
 
 import qualified Codec.Grib as Grib
+import Control.Applicative ((<$>))
+import Data.Attoparsec.ByteString (Parser,
+                                   many1)
+import Data.Attoparsec.ByteString.Utils (anyFloat)
 import qualified Data.IntMap as IntMap
 import Data.Map (Map)
 import qualified Data.Map as Map
@@ -48,3 +54,20 @@ zipListWith11 :: (a -> a -> a -> a -> a -> a -> a -> a -> a -> a -> a -> b) ->
                  [b]
 zipListWith11 f parameters = let [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11] = map head parameters
                              in f p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11:zipListWith11 f (map tail parameters)
+
+
+topoParser :: Parser Topo
+topoParser = Topo <$> floatMapParser
+
+
+landSeaParser :: Parser LandSea
+landSeaParser = LandSea <$> floatMapParser
+
+
+floatMapParser :: Parser (Map Point Float)
+floatMapParser = Map.fromList . zip topoPoints <$> many1 anyFloat
+
+
+topoPoints :: [Point]
+topoPoints = [ Point la lo | la <- [476000, 475500 .. 224000],
+                             lo <- [1200000, 1200625 .. 1500000]]

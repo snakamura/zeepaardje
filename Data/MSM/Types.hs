@@ -5,7 +5,9 @@ module Data.MSM.Types (
     Point(..),
     SurfaceParameters(..),
     AirParameters(..),
-    Pressure(..)
+    Pressure(..),
+    Topo(..),
+    LandSea(..)
 ) where
 
 import Data.IntMap (IntMap)
@@ -60,7 +62,6 @@ data AirParameters = AirParameters {
 } deriving Show
 
 
-
 data Pressure = P1000
               | P975
               | P950
@@ -77,4 +78,12 @@ data Pressure = P1000
               | P200
               | P150
               | P100
+  deriving Show
+
+
+data Topo = Topo (Map Point Float)
+  deriving Show
+
+
+data LandSea = LandSea (Map Point Float)
   deriving Show

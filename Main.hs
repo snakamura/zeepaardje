@@ -18,6 +18,7 @@ main :: IO ()
 main = do
   args <- getArgs
   let path = head args
+{-
       n = read $ args !! 1
   grib <- runResourceT $ sourceFile path $$ sinkParser Grib.parser
   print $ length $ snd $ head $ Grib.sections grib
@@ -32,4 +33,8 @@ main = do
   print metadata
   print $ IntMap.size forcast
 --  print $ take 10 $ Map.toList $ forcast IntMap.! 0
-
+-}
+--  topo <- runResourceT $ sourceFile path $$ sinkParser MSM.topoParser
+--  print topo
+  landSea <- runResourceT $ sourceFile path $$ sinkParser MSM.landSeaParser
+  print landSea
